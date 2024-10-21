@@ -1,4 +1,4 @@
-package com.restapi.restapi.user;
+package com.restapi.restapi.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -2,6 +2,8 @@ package com.restapi.restapi.user;
 
 import com.restapi.restapi.exception.UserNotFoundException;
 import com.restapi.restapi.jpa.UserRepository;
+import com.restapi.restapi.post.Post;
+
 import jakarta.validation.Valid;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -51,5 +53,11 @@ public class UserJpaController {
         User savedUser =this.service.save(user);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId()).toUri();
         return ResponseEntity.created(location).build();
+    }
+    @GetMapping("jpa/users/{id}/post")
+    public List<Post> getPostByUserId(@PathVariable int id){
+        Optional<User> user = repository.findById(id);
+        if(user.isEmpty()) throw new UserNotFoundException("id:"+id);
+        return user.get().getPosts();
     }
 }

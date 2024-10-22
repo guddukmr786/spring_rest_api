@@ -1,7 +1,7 @@
 package com.restapi.restapi.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+// import com.fasterxml.jackson.annotation.JsonProperty;
 import com.restapi.restapi.post.Post;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,8 +33,9 @@ public class User {
     //@JsonProperty("data_of_birth")
     private LocalDate dateOfBirth;
     @OneToMany(mappedBy = "user")
-    @JsonIgnore
+    // @JsonIgnore
     private List<Post> posts;
+
     public User(Integer id, String name, LocalDate dateOfBirth) {
         this.id = id;
         this.name = name;
